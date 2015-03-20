@@ -15,3 +15,9 @@
 
 {% get_comment_count for question as comment_count %}
 <p>{{ comment_count }} comments have been posted.</p>
+{% get_comment_form for question as question_comments %}
+<form action="{% comment_form_target %}" method="post">
+    {% csrf_token %}
+    {{ question_comments.as_p }}
+    <input type = "submit" name = "submit" value = "Post">
+</form>
